@@ -1,4 +1,4 @@
-import Foot, {Componenet} from './Foot'
+import Foot from './Foot'
 
 // class Foot extends Component {
 //     return (

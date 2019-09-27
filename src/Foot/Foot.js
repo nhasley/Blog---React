@@ -2,7 +2,7 @@ import React from 'react'
 
 const Foot = () => {
     return (
-        <div class="footer">
+        <div>
             <p>by Nova Hasley</p>
         </div>
     )
