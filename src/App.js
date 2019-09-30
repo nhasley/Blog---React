@@ -26,19 +26,27 @@ class App extends Component {
       }
     ]
   };
-  // this.handleClick = this.handleClick.bind(this)
-  handleClick = event => {
+  // // this.handleClick = this.handleClick.bind(this)
+  // handleShowForm = event => {
+  //   this.setState({
+  //     isShowing: !this.state.isShowing
+  //   });
+  // };
+ 
+  //update state here and pass this method down to another component
+  handleAddPost = (post) => {
     this.setState({
-      isShowing: !this.state.isShowing
-    });
-  };
-  // handleClick(event){
-  //   this.ListeningStateChangedEvent({
-  //     isShowing : !this.state.isShowing
-  //   })
-  // }
+      posts: [{...post}, ...this.state.posts]
+    })
+  }
+
+  handleOnChange = event => {
+      event.preventDefault()
+      this.props.handleAddPost({...this.state})
+  }
+
   render() {
-    const title = <h1>Nova Blog</h1>;
+    // const title = <h1>Nova Blog</h1>;
     const composedPosts = this.state.posts.map((item, index) => {
       return (
         <li key={index} className="post">
@@ -49,10 +57,11 @@ class App extends Component {
     });
     return (
       <div className="App container">
-        <Nav content="NAV"/>
-        {this.state.isShowing ? title : null}
-        <BlogForm />
-        <button onClick={this.handleClick}>click me</button>
+        <Nav content="NAV" />
+        {this.state.isShowing ? (
+          <BlogForm handleAddPost={this.handleAddPost} handleToggle={this.handleShowForm} />
+        ) : null}
+        {/* <button onClick={this.handleShowForm}>Add Post</button> */}
         <ul>{composedPosts}</ul>
         <Foot />
       </div>
