@@ -9,10 +9,15 @@ class BlogForm extends Component {
         user: ''
     }
 
-    handleOnChange = event => {
+    handleOnChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         })
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.handleAddPost({...this.state})
     }
     render() {
         return (
